@@ -1,3 +1,6 @@
+/**
+* Code to check user activation before login.
+**/
 add_filter( 'authenticate', 'user_activation_check_code', 11, 3 );
 function user_activation_check_code( $user, $user_login, $password )
 	{
@@ -11,10 +14,10 @@ function user_activation_check_code( $user, $user_login, $password )
 		{
 			//add error message to each
 			if ( empty( $user_login ) )
-				$error->add( 'empty_username', __( 'The username field is empty.', 'indoexpo' ) );
+				$error->add( 'empty_username', __( 'The username field is empty.', 'text_domain' ) );
 
 			if ( empty( $password ) )
-				$error->add( 'empty_password', __( 'The password field is empty.', 'indoexpo' ) );
+				$error->add( 'empty_password', __( 'The password field is empty.', 'text_domain' ) );
 
 			//remove authenticate if empty
 			remove_action( 'authenticate', 'wp_authenticate_username_password', 20 );
@@ -29,7 +32,7 @@ function user_activation_check_code( $user, $user_login, $password )
 		if( empty( $user_info ) )
 		{
 			//add the error message
-			$error->add( 'incorrect_user', __( 'Username does not exist', 'indoexpo' ) );
+			$error->add( 'incorrect_user', __( 'Username does not exist', 'text_domain' ) );
 
 			// remove the ability to authenticate
 			remove_action( 'authenticate', 'wp_authenticate_username_password', 20 );
